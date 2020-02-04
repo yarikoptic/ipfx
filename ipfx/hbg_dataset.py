@@ -1,3 +1,4 @@
+import re
 import pandas as pd
 import numpy as np
 import logging
@@ -84,6 +85,9 @@ class HBGDataSet(EphysDataSet):
     def get_stimulus_code(self, sweep_num):
 
         stim_code_ext = self.nwb_data.get_stim_code(sweep_num)
+
+        if stim_code_ext[-5:]=="_DA_0":
+            stim_code_ext = stim_code_ext[:-5]
 
         return stim_code_ext.split("[")[0]
 
